@@ -1,0 +1,14 @@
+@app = http://127.0.0.1:8000
+POST {{app}}/todos
+Content-Type: application/json
+Accept: application/json
+
+{
+    "title": "Simple Data Todo 1",
+    "description": "Simple Description 1",
+    "is_done": false
+}
+
+### Get todos
+GET {{app}}/todos
+Accept: application/json
