@@ -24,12 +24,12 @@ def create_todo(*, session: Session = Depends(get_session), todo: TodoCreate):
     return db_todo
 
 
-@router.get("{todo_id}", response_model=TodoRead)
+@router.get("/{todo_id}", response_model=TodoRead)
 def get_todo(todo_id: int, *, session: Session = Depends(get_session)):
     todo = session.query(Todo).get(todo_id)
     return todo
 
-@router.patch("{todo_id}", response_model=TodoRead)
+@router.patch("/{todo_id}", response_model=TodoRead)
 def update_todo(todo_id: int, *, session: Session = Depends(get_session), todo: TodoUpdate):
     db_todo = session.query(Todo).get(todo_id)
     if not db_todo:
@@ -41,7 +41,7 @@ def update_todo(todo_id: int, *, session: Session = Depends(get_session), todo: 
     session.refresh(db_todo)
     return db_todo
 
-@router.delete("{todo_id}")
+@router.delete("/{todo_id}")
 def delete_todo(todo_id: int, *, session: Session = Depends(get_session)):
     db_todo = session.query(Todo).get(todo_id)
     if not db_todo:
